@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सुनकई लाइब्रेरी शिक्षा विकास अभियान - लाइव ट्रैकर</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        }
+        h2 { color: #d32f2f; margin-bottom: 5px; font-size: 24px; }
+        h3 { color: #1976d2; margin-top: 5px; font-size: 20px; }
+        .intro-text { text-align: justify; font-size: 15px; color: #444; line-height: 1.6; background: #fff8f8; padding: 15px; border-left: 4px solid #d32f2f; border-radius: 4px; margin-bottom: 20px; }
+        
+        /* आवश्यकताएं सेक्शन */
+        .needs-box { background: #f0f7ff; padding: 15px; border-radius: 10px; text-align: left; margin-bottom: 20px; border: 1px solid #d0e3ff; }
+        .needs-box h4 { margin: 0 0 10px 0; color: #0d47a1; }
+        .needs-box ul { margin: 0; padding-left: 20px; }
+        .needs-box li { margin-bottom: 8px; font-size: 14.5px; color: #333; }
+
+        /* थर्मामीटर स्टाइल प्रोग्रेस बार */
+        .progress-box {
+            background: #eee;
+            border-radius: 20px;
+            height: 30px;
+            width: 100%;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #ff4e50, #f9d423, #2e7d32);
+            height: 100%;
+            width: 0%; /* JS से लाइव अपडेट होगा */
+            transition: width 1.5s ease-in-out;
+        }
+        .temp-labels {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* काउंटर बॉक्स */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .stat-box {
+            background: #eef5fc;
+            padding: 12px;
+            border-radius: 10px;
+            width: 45%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .stat-box p { margin: 0 0 5px 0; font-size: 14px; color: #666; }
+        .stat-box span {
+            display: block;
+            font-size: 22px;
+            font-weight: bold;
+            color: #1565c0;
+        }
+
+        /* दानदाताओं की सूची */
+        .donor-section { margin-top: 25px; }
+        .donor-list {
+            text-align: left;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 10px;
+            max-height: 280px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+        }
+        .donor-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+            font-size: 14.5px;
+        }
+        .donor-item:last-child { border-bottom: none; }
+        .donor-item .serial { font-weight: bold; color: #777; margin-right: 5px; }
+        .donor-item .designation { font-size: 12px; color: #666; display: block; font-style: italic; }
+
+        /* बटन और अपील */
+        .payment-btn {
+            background: #2e7d32;
+            color: white;
+            padding: 14px;
+            display: block;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .footer-note { font-size: 12px; color: #666; margin-top: 15px; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🙏 शिक्षा विकास अभियान 🙏</h2>
+    <h3>सामुदायिक लाइब्रेरी संविधान घर, सुनकई</h3>
+    
+    <div class="intro-text">
+        पंचायती राज विभाग एवं जिला परिषद धौलपुर द्वारा स्थापित यह लाइब्रेरी बच्चों के भविष्य निर्माण का केंद्र है। लेकिन वर्तमान में 45°–47° की भीषण गर्मी के कारण बच्चों को अध्ययन में काफी कठिनाई हो रही है। जिला स्तर की लाइब्रेरी में AC का सरकारी प्रावधान न होने के कारण इसे हमें <strong>सामुदायिक सहयोग</strong> से ही पूरा करना है।
+    </div>
+
+    <!-- वर्तमान आवश्यकताएं -->
+    <div class="needs-box">
+        <h4>📌 वर्तमान आवश्यकताएं:</h4>
+        <ul>
+            <li><strong>1. शुद्ध एवं ठंडे पेयजल की व्यवस्था:</strong> वॉटर कूलर हेतु स्थायी जल व्यवस्था सुनिश्चित करना।</li>
+            <li><strong>2. कूलिंग सुविधा (AC / कूलर व्यवस्था):</strong> बच्चों को बेहतर अध्ययन वातावरण उपलब्ध कराना।</li>
+        </ul>
+    </div>
+
+    <!-- लाइव तापमान/प्रोग्रेस इंडिकेटर -->
+    <div class="temp-labels">
+        <span style="color: #d32f2f;">भीषण गर्मी: 46°C 🔥</span>
+        <span style="color: #2e7d32;">सुविधाजनक लक्ष्य: 26°C ❄️</span>
+    </div>
+    <div class="progress-box">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <p id="progressPercent" style="font-weight: bold; color: #2e7d32; margin-top: 5px; font-size: 15px;">गणना की जा रही है...</p>
+
+    <!-- लाइव आंकड़े -->
+    <div class="stats">
+        <div class="stat-box">
+            <p>कुल संकलित सहयोग</p>
+            <span id="collectedAmount">₹0</span>
+        </div>
+        <div class="stat-box">
+            <p>अनुमानित लक्ष्य राशि</p>
+            <span>₹40,000</span>
+        </div>
+    </div>
+
+    <!-- बटन विवरण -->
+    <a href="tel:8504886137" class="payment-btn">📱 PhonePe / Google Pay: 8504886137</a>
+    <p style="font-size: 13px; color: #333; margin: 10px 0; font-weight: 500;">
+        संविधान मित्र: रवि मीना | सहयोगी: नाहर सिंह मीना<br>
+        <span style="color: #e65100;">⚠️ सहयोग के बाद अपना नाम, फोटो और स्क्रीनशॉट व्हाट्सएप पर साझा करें।</span>
+    </p>
+
+    <!-- दानदाताओं की सूची -->
+    <div class="donor-section">
+        <h4 style="color: #333; margin-bottom: 10px;">💐 हमारे सम्मानीय भामाशाह एवं सहयोगी 💐</h4>
+        <div class="donor-list" id="donorList">
+            <!-- यहाँ सूची जावास्क्रिप्ट से लोड होगी -->
+        </div>
+    </div>
+
+    <p class="footer-note">"आइए मिलकर अपने गांव के बच्चों के लिए एक बेहतर, ठंडा और सुविधाजनक अध्ययन वातावरण बनाएं।"</p>
+</div>
+
+<script>
+    // --- लक्ष्य राशि अब ₹40,000 सेट है ---
+    const TARGET_AMOUNT = 40000; 
+
+    // --- दानदाताओं की सूची ---
+    const donors = [
+        { name: "विजय सिंह मीना", desc: "अध्यापक", amount: 1000 },
+        { name: "नाहर सिंह मीना", desc: "पत्रकार", amount: 500 },
+        { name: "लज्जा राम मीना", desc: "टी.सी. रेलवे", amount: 2100 },
+        { name: "दिनेश मीना", desc: "निजी व्यवसायी", amount: 1100 },
+        { name: "वीरसिंह मीना", desc: "AEN", amount: 2100 },
+        { name: "शिवदयाल मीना", desc: "अध्यापक (KVS)", amount: 1100 },
+        { name: "देवेंद्र सर धनेरा", desc: "एयरटेल चीफ डायरेक्टर", amount: 1100 },
+        { name: "महेश मीना", desc: "LDC", amount: 1100 },
+        { name: "रामनरेश मीना हुलासपुरा", desc: "अध्यापक (KVS)", amount: 1100 },
+        { name: "राजेंद्र (राजू मीना)", desc: "AEN", amount: 2500 },
+        { name: "रामकुमार मीना", desc: "स्वरोजगार", amount: 501 },
+        { name: "लवकुश मीना", desc: "रेलवे ALP", amount: 1100 }
+    ];
+
+    // कुल राशि की ऑटोमैटिक गणना
+    const CURRENT_COLLECTED = donors.reduce((sum, donor) => sum + donor.amount, 0);
+
+    // स्क्रीन पर कुल राशि दिखाना
+    document.getElementById('collectedAmount').innerText = "₹" + CURRENT_COLLECTED.toLocaleString('en-IN');
+    
+    // प्रोग्रेस प्रतिशत निकालना
+    const percentage = Math.min((CURRENT_COLLECTED / TARGET_AMOUNT) * 100, 100);
+    
+    // प्रोग्रेस बार एनीमेशन लोड करना
+    setTimeout(() => {
+        document.getElementById('progressBar').style.width = percentage + "%";
+        document.getElementById('progressPercent').innerText = `अभियान की प्रगति: ${percentage.toFixed(1)}% पूरी हुई (ठंडी छांव की ओर...)`;
+    }, 300);
+
+    // दानदाताओं को क्रमानुसार लिस्ट में जोड़ना
+    const donorListContainer = document.getElementById('donorList');
+    donors.forEach((donor, index) => {
+        const item = document.createElement('div');
+        item.className = 'donor-item';
+        item.innerHTML = `
+            <div>
+                <span class="serial">${index + 1}.</span>
+                <strong>${donor.name}</strong>
+                <span class="designation">(${donor.desc})</span>
+            </div>
+            <strong style="color: #2e7d32;">₹${donor.amount.toLocaleString('en-IN')}</strong>
+        `;
+        donorListContainer.appendChild(item);
+    });
+</script>
+
+</body>
+</html>
